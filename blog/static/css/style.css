@@ -1,0 +1,936 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/
+v2.0 | 20110126
+License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+
+base.htmlに記述
+
+*/
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  -webkit-appearance: none;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+footer {
+  height: 20px;
+  color: #3d3d3d;
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  font-size: 12px;
+  width: calc(100vw - 230px);
+}
+
+.contents {
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow: auto;
+}
+
+/* global-nav */
+#global-nav {
+  background-color: #FABC32;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 100000000000;
+  width: 230px;
+  text-align: center;
+}
+#global-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  /* width: 200px;
+  background-color: #FABC32; */
+  position: relative;
+  overflow: auto;
+}
+#global-nav li {
+  line-height: 70px;
+  transition-duration: 0.5s;
+}
+#global-nav li:hover:not(.active) {
+  background-color: white;
+  color: #FABC32;
+}
+#global-nav li a {
+  display: block;
+  color: #fff;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition-duration: 0.5s;
+}
+#global-nav li a.acitve {
+  background-color: #da3c41;
+  color: #FABC32;
+}
+#global-nav li a:hover:not(.active) {
+  font-size: 18px;
+  color: #FABC32;
+}
+#global-nav li .mapping_logo::before {
+  font-family: "Font Awesome 5 Free";
+  content: "";
+  font-weight: 900;
+  left: -13px;
+  position: relative;
+  padding-right: 2px;
+}
+#global-nav li .findpins_logo::before {
+  font-family: "Font Awesome 5 Free";
+  content: "";
+  font-weight: 900;
+  left: -10px;
+  position: relative;
+}
+#global-nav li .sharepins_logo::before {
+  font-family: "Font Awesome 5 Free";
+  content: "";
+  font-weight: 900;
+  left: -6px;
+  position: relative;
+  padding-right: 11px;
+}
+
+.icon {
+  padding-right: 10px;
+}
+
+.wrapper {
+  width: 100%;
+  margin-top: 114px;
+  position: absolute;
+  display: flex;
+}
+
+.icon_bar {
+  width: 100%;
+  height: 134px;
+  top: 0;
+  left: 230px;
+  position: fixed;
+}
+
+h1 img {
+  width: 160px;
+  height: auto;
+  margin: -30px 0 -60px 0;
+}
+
+/* ローディング画面 */
+#loading {
+  width: calc(100vw - 230px);
+  height: 100vh;
+  transition: all 1s;
+  background-color: #FABC32;
+  /* 以下のコードを追加 */
+  position: fixed;
+  top: 0;
+  left: 230px;
+  z-index: 9999;
+}
+
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.spinner {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 100px auto;
+  top: calc(73vh / 2);
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: load4 1.3s infinite linear;
+  transform: translateZ(0);
+}
+@keyframes load4 {
+  0%, 100% {
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+/*
+
+scraping_input.htmlに記述
+
+*/
+main {
+  height: calc(100vh - 134px);
+  width: 100%;
+  margin-left: 230px;
+}
+
+/* ボタンを横に配置 */
+div.button_yoko {
+  text-align: center;
+  margin-top: 117px;
+}
+
+.url_input {
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: none;
+  padding: 2px 8px;
+  width: 80%;
+  height: 60px;
+  border: solid 3px #F4F4F4;
+}
+.url_input:focus {
+  outline: none;
+  border: 3px solid #FABC32;
+}
+
+.submit_btn {
+  font-size: 16px;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #FABC32;
+  transition-duration: 0.5s;
+  margin: 45px auto 30px;
+  height: 5vh;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  width: 170px;
+  border-radius: 15px !important;
+}
+.submit_btn:hover {
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+  font-size: 18px;
+}
+
+.serch_icon {
+  margin-left: 10px;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 40px 0;
+}
+h1 a {
+  color: white;
+  text-decoration: none;
+}
+
+/*
+
+list.htmlに記述
+
+*/
+#map {
+  height: 400px;
+  width: 88%;
+  position: fixed !important;
+  top: 125px;
+  z-index: 100;
+  margin: 0 auto;
+}
+
+.map_gizi {
+  height: 400px;
+  width: 88%;
+  top: 125px;
+  margin: 0 auto;
+  z-index: 101;
+  position: fixed;
+}
+
+/* infowindowの装飾 */
+.gmap {
+  margin-top: 30px;
+  height: 450px;
+}
+
+.gmap-info-window {
+  position: relative;
+  padding: 25px 30px;
+  border: 2px solid #FABC32;
+  background-color: #fff;
+}
+
+.gmap-info-window-title {
+  color: #FABC32;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.gmap-info-window-address {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+.gmap-info-window-address a {
+  text-decoration: none;
+  color: white;
+  width: 80%;
+  height: 20%;
+  border: 2px solid #FABC32;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: #FABC32;
+}
+
+ul.list-group {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+ul.list-group::after {
+  content: "";
+  display: block;
+  width: 384px;
+  /* .boxに指定したwidthと同じ幅を指定する */
+}
+ul.list-group::before {
+  content: "";
+  display: block;
+  width: 384px;
+  /* .boxに指定したwidthと同じ幅を指定する */
+  order: 1;
+  /* 疑似要素beforeの順番を必ず指定する*/
+}
+
+li.shop_list_li {
+  list-style: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  width: 384px;
+  border-radius: 20px;
+  vertical-align: top;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  display: inline-block;
+  padding: 50px;
+  box-sizing: border-box;
+  color: #959390;
+}
+li.shop_list_li:hover {
+  color: white;
+  background-color: #FABC32;
+}
+
+.flex-item {
+  margin: 194px auto 10px;
+  padding: 215px 10px 10px 10px;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.card_name_flex {
+  height: 79px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.svg_wifi_icon {
+  fill: #FABC32;
+  width: 30px;
+  height: 30px;
+  margin-top: 12px;
+}
+
+.mylocation_hover {
+  cursor: pointer;
+}
+.mylocation_hover:hover {
+  color: #FABC32;
+}
+
+/*
+
+post_list.htmlに記述
+
+*/
+h1.post_list_h1 {
+  margin: 12px 10px;
+}
+
+ul.list_group_share {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: #3d3d3d;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+ul.list_group_share::after {
+  content: "";
+  display: block;
+  width: 384px;
+  /* .boxに指定したwidthと同じ幅を指定する */
+}
+ul.list_group_share::before {
+  content: "";
+  display: block;
+  width: 384px;
+  /* .boxに指定したwidthと同じ幅を指定する */
+  order: 1;
+  /* 疑似要素beforeの順番を必ず指定する*/
+}
+
+li.share_list {
+  list-style: none;
+  margin: 10px 10px 20px;
+  width: 384px;
+  height: 150px;
+  border-radius: 15px;
+  vertical-align: top;
+  display: inline-block;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  transition: background-color 0.5s;
+  position: relative;
+}
+li.share_list a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+li.share_list:hover {
+  color: white;
+  background-color: #FABC32;
+}
+
+.post_list_title a {
+  text-decoration: none;
+  color: #FABC32;
+}
+
+.findpins_more_btn {
+  margin-left: 10px;
+}
+
+.list_sum {
+  margin-left: 10px;
+}
+
+#card_list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+#card_list button {
+  border: none;
+  background: transparent;
+}
+#card_list .card {
+  will-change: transform;
+  margin: 20px;
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: #fafafa;
+  height: 35%;
+  width: 344px;
+  transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+#card_list .card:hover {
+  cursor: pointer;
+}
+#card_list .card__image {
+  position: absolute;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repat;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: block;
+  opacity: 0;
+  transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#card_list .card__image:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 500ms;
+  bottom: 0;
+}
+#card_list .card__title {
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 24px;
+  color: #FFF;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+#card_list .card__text {
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 14px;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 100px;
+  padding-left: 19px;
+  padding-right: 19px;
+  padding-top: 6px;
+  margin: 0;
+  line-height: 1.6;
+  position: absolute;
+  color: #000;
+  overflow: hidden;
+  transition: width 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: delay 0.1s;
+}
+#card_list .card__action-bar {
+  -webkit-user-select: none;
+  user-select: none;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  height: 52px;
+  transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #FABC32;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+#card_list .card__action-bar .card_full {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#card_list .card__action-bar .card_full a {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border: 2px solid #FABC32;
+  border-radius: 3px;
+  background-color: #FABC32;
+  display: block;
+  position: absolute;
+  padding-top: 16px;
+  top: -2px;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  transition-duration: 0.5s;
+}
+#card_list .card__action-bar .card_full a:hover {
+  font-size: 18px;
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
+#card_list .card__action-bar .card__button {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+#card_list .card--big {
+  box-shadow: 6px 7px 15px -7px rgba(0, 0, 0, 0.7);
+  height: 304px;
+  min-height: 304px;
+  border-radius: 20px;
+}
+#card_list .card--big .card__image {
+  border-radius: 1px 1px 0 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 1;
+  max-height: 176px;
+}
+#card_list .card--big .card__title {
+  top: 135px;
+}
+#card_list .card--big .card__text {
+  top: 176px;
+}
+#card_list .card--big .card__action-bar {
+  left: 0;
+}
+
+/*
+
+post_new.htmlに記述
+
+*/
+#SharePin_POST .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+  transition: 0.3s;
+}
+#SharePin_POST .overlay.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+#SharePin_POST .btn {
+  margin: 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+}
+#SharePin_POST form {
+  margin: 35px auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.3s;
+  border-radius: 5%;
+}
+#SharePin_POST form.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-100px);
+}
+#SharePin_POST .specialthanks {
+  margin: 0 auto;
+  width: 350px;
+  height: 600px;
+  font-size: 30px;
+  overflow: hidden;
+  transition: 0.3s;
+  text-align: center;
+  padding-top: 120px;
+}
+#SharePin_POST .specialthanks.hidden {
+  display: none;
+  opacity: 0;
+  transform: translateY(-100px);
+}
+#SharePin_POST .specialthanks .tips {
+  font-weight: bold;
+}
+#SharePin_POST #close {
+  display: block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#SharePin_POST #close:hover {
+  background-color: #FABC32;
+}
+#SharePin_POST h1 {
+  background: #FABC32;
+  margin: 0;
+  padding: 8px;
+  color: white;
+  font: 300 20px Roboto;
+  text-align: center;
+}
+#SharePin_POST .group {
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
+#SharePin_POST label {
+  position: absolute;
+  top: 7px;
+  font: 400 15px Roboto;
+  color: #A9A9A9;
+  cursor: text;
+  transition: 0.2s;
+}
+#SharePin_POST input {
+  background: linear-gradient(to bottom, transparent 92%, #FABC32 8%) no-repeat;
+  background-position: -80vw 0;
+  background-size: 80vw 100%;
+  display: block;
+  width: 100%;
+  padding: 5px 0;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  border: none;
+  border-bottom: solid 1px #FABC32;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+#SharePin_POST input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #F9F9F9 inset;
+}
+#SharePin_POST input:focus, #SharePin_POST input:valid {
+  background-position: 0 0;
+  outline: none;
+}
+#SharePin_POST input:focus ~ label, #SharePin_POST input:valid ~ label {
+  top: -12px;
+  color: #FABC32;
+  font: 700 12px Roboto;
+}
+#SharePin_POST textarea, #SharePin_POST textarea:focus {
+  background: white;
+  width: 100%;
+  height: 100%;
+  padding: 9px;
+  margin-top: 30px;
+  border: 1px solid #FABC32;
+  outline: none;
+  font: 300 15px Roboto;
+  resize: none;
+  box-sizing: border-box;
+}
+#SharePin_POST textarea:focus, #SharePin_POST textarea:valid, #SharePin_POST textarea:focus:focus, #SharePin_POST textarea:focus:valid {
+  padding: 7px;
+  border: 3px solid #FABC32;
+}
+#SharePin_POST textarea:focus ~ label, #SharePin_POST textarea:valid ~ label, #SharePin_POST textarea:focus:focus ~ label, #SharePin_POST textarea:focus:valid ~ label {
+  top: 12px;
+  left: 0;
+  color: #FABC32;
+  font: 700 12px Roboto;
+}
+#SharePin_POST textarea ~ label, #SharePin_POST textarea:focus ~ label {
+  top: 35px;
+  left: 7px;
+}
+#SharePin_POST ::selection {
+  background: #FABC32;
+  color: white;
+}
+#SharePin_POST .share_sub {
+  font-size: 16px;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #FABC32;
+  transition-duration: 0.5s;
+  margin: 45px auto 30px;
+  height: 5vh;
+  width: 200px;
+}
+#SharePin_POST .share_sub:hover {
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+  font-size: 18px;
+}
+#SharePin_POST .share_btn {
+  margin-left: 7px;
+}
+
+label#id_image {
+  color: #A9A9A9 !important;
+  font-size: 16px !important;
+  top: -20px !important;
+  font: 400 15px Roboto !important;
+}
+
+/*
+
+post_detail.htmlに記述
+
+*/
+.go_google {
+  font-size: 16px;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #FABC32;
+  transition-duration: 0.5s;
+  height: 60px;
+  width: 220px;
+  margin: 0 auto;
+}
+.go_google:hover {
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+  font-size: 18px;
+}
+.go_google a {
+  text-decoration: none;
+  color: white;
+}
+
+.map_add_icon {
+  margin-left: 10px;
+}
+
+.post {
+  margin-bottom: 50px;
+  width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  position: inherit;
+}
+
+.post_image {
+  width: 100%;
+  height: auto;
+}
+
+.post_flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post_title {
+  font-size: 36px;
+  margin-top: 60px;
+  margin-bottom: 18px;
+}
+
+.edit_btn {
+  position: absolute;
+  right: 374px;
+}
+
+.edit_btn_i {
+  color: #3d3d3d;
+}
+
+.delete_btn {
+  position: absolute;
+  right: 330px;
+}
+
+.delete_btn_i {
+  color: #3d3d3d;
+}
+
+.post_text {
+  margin-top: 36px;
+  margin-bottom: 36px;
+}
+
+.post_date {
+  font-size: 12px;
+  color: #A9A9A9;
+}
+
+/*
+
+post_edit.html
+
+*/
+input#id_image {
+  font-size: 16px;
+  display: block;
+  border: none;
+  border-radius: 5px;
+  color: #A9A9A9;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}

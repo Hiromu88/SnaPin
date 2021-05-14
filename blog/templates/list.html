@@ -1,0 +1,56 @@
+{% extends 'blog/base.html' %}
+{% block header %}
+
+{% endblock header %}
+
+{% block content %}
+
+{% autoescape off %}
+    <script>
+        setLocation("{{ final_list }}");
+    </script>
+{% endautoescape %}
+
+    <!-- Google Mapの記述 -->
+    <div class="flex-item">
+        <div class="map_gizi">
+            <button class="location_btn" onclick="mylocation()"><i class="fas fa-location-arrow mylocation_hover"></i></button>
+        </div>
+        <!-- <div id="map" style="position: fixed;"> -->
+        <div id="map">
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key= MY API KEY &callback=initMap&libraries=&v=weekly"></script>
+        <!-- infowindowのカスタマイズ用 -->
+            <script src="https://82mou.github.io/infobox/lib/infobox.js"></script>
+
+        <!-- <div class="flex-item"> -->
+        <div class="list_gizi">
+            <ul class="list-group list-group-flush">
+                {% for item in final_list %}
+                <!-- <li class="shop_list_li" onclick="test('{{ forloop.counter0 }}')"> -->
+                    <div class="card_map card--big_map">
+                        {% if item.image %}
+                        <div class="card_image_map"><img src="{{ item.image }}"></div>
+                        {% endif %}
+                        <div class="card_title_map">
+                            <p>{{ item.name }}</p>
+                        </div>
+                            <div class="card_open_map">{{ item.open }}</div>
+                            <!-- <div class="card_wifi_map">{{ item.wifi }}</div> -->
+                        <div class="card_action-bar_map">
+                            <div class="card_full_map">
+                                <a onclick="click_pin('{{ forloop.counter0 }}')">View More<i class="fas fa-angle-double-right card_more_btn"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </li> -->
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!-- </div> -->
+    <script>
+        addPin();
+    </script>
+
+{% endblock content %}

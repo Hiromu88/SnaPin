@@ -1,0 +1,227 @@
+button {
+  border: none;
+  background: transparent;
+}
+
+.card_map {
+  will-change: transform;
+  margin: 20px;
+  position: relative;
+  border-radius: 2px;
+  overflow: hidden;
+  background-color: #fafafa;
+  height: 35%;
+  width: 358px;
+  transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+.card_map:hover {
+  cursor: pointer;
+}
+
+.card_image_map {
+  position: absolute;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repat;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: block;
+  text-align: center;
+  transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.card_image_map img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.card_image_map:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 500ms;
+  bottom: 0;
+}
+
+.card_title_map {
+  -webkit-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: white;
+  /* margin: 0; */
+  position: absolute;
+  left: 0;
+  /* right: 0; */
+  padding: 0 16px;
+  font-weight: 400;
+  height: 79px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  /* text-align: center; */
+  /* transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1); */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translateY(0) translateX(-50%); */
+  /* -webkit-transform: translateY(-50%) translateX(-50%); */
+}
+.card_title_map p {
+  width: 100%;
+}
+
+.card_text_map {
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 14px;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 100px;
+  padding-left: 19px;
+  padding-right: 19px;
+  padding-top: 6px;
+  margin: 0;
+  line-height: 1.6;
+  position: absolute;
+  color: #000;
+  overflow: hidden;
+  transition: width 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: delay 0.1s;
+}
+
+.card_action-bar_map {
+  -webkit-user-select: none;
+  user-select: none;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  top: auto;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  height: 52px;
+  transition: left 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-color: #FABC32;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card_full_map {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.card_full_map a {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border: 2px solid #FABC32;
+  border-radius: 3px;
+  background-color: #FABC32;
+  display: block;
+  position: absolute;
+  padding-top: 16px;
+  top: -2px;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  transition-duration: 0.2s;
+}
+.card_full_map a:hover {
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+  font-size: 18px;
+}
+
+.card_more_btn {
+  margin-left: 10px;
+}
+
+.card--big_map {
+  box-shadow: 6px 7px 15px -7px rgba(0, 0, 0, 0.7);
+  height: 334px;
+  min-height: 334px;
+  border-radius: 20px;
+}
+
+.card--big_map .card_image_map {
+  border-radius: 1px 1px 0 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 1;
+  max-height: 176px;
+}
+
+.card--big_map .card_title_map {
+  top: 98px;
+}
+
+.card--big_map .card_open_map .card_wifi_map {
+  top: 176px;
+}
+
+.card--big_map .card_action-bar_map {
+  left: 0;
+}
+
+.card_open_map {
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 14px;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 176px;
+  padding: 19px;
+  margin: 0;
+  line-height: 1.6;
+  position: absolute;
+  color: #000;
+  overflow: hidden;
+  transition: width 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: delay 0.1s;
+}
+
+.card_wifi_map {
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 14px;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 100px;
+  padding-left: 19px;
+  padding-right: 19px;
+  padding-top: 6px;
+  margin: 0;
+  line-height: 1.6;
+  position: absolute;
+  color: #000;
+  overflow: hidden;
+  transition: width 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: delay 0.1s;
+}
+
+.location_btn {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 81%;
+  right: 96%;
+  z-index: 101;
+  background-color: white;
+}

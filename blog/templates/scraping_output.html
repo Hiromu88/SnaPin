@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+    <ul class="list-group list-group-flush">
+     <table border="2">
+       <tr>
+         <th>name</th>
+         <th>address</th>
+         <th>url</th>
+         <th>key</th>
+         <th>format</th>
+       </tr>
+       {% for post, post2, post3, post4, post5 in d_list %}
+       <tr>
+         <td>{{ post }}</td>
+         <td>{{ post2 }}</td>
+         <td><a href="{{ post3 }}">{{ post3 }}</a></td>
+         <td>{{ post4 }}</td>
+         <td>{{ post5 }}</td>
+       </tr>
+       {% endfor %}
+     </table>
+    </ul>
+</div>
+
+{% endblock %}

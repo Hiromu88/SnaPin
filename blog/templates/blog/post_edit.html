@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="SharePin_POST">
+    <!-- <div class="btn"></div>
+    <div class="overlay"></div> -->
+    <span id="close"></span>
+    <div class="specialthanks hidden">
+        <p class="tips">スペシャルサンクス</p><br>
+        <p>ともさん is GOD</p><br>
+        <p>かっきー様とエーセー様</p>
+    </div>
+    <form method="POST" class="post-form contact" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- {{ form.as_p }} -->
+        <!-- {{ form.as_ul }} -->
+        <!-- <h1 class="share_pin_h1">Share Pin</h1> -->
+        <div class="group">
+            {{ form.title }}
+            <label for="id_title">タイトル</label>
+        </div>
+        <div class="group">
+            <!-- <input type="text" id="url" required="required" /> -->
+            {{ form.url }}
+            <label for="id_url">マップURL</label>
+        </div>
+        <div class="group">
+            <!-- <textarea id="message" required="required"></textarea> -->
+            {{ form.text }}
+            <label for="id_text">内容</label>
+        </div>
+        <div id="post_img" class="group">
+            <!-- <textarea id="message" required="required"></textarea> -->
+            {% if form.image %}
+            {{ form.image }}
+            <label for="id_image" id="id_image">背景画像</label>
+            {% endif %}
+        </div>
+        <button value="submit" class="share_sub">Go Share<i class="fas fa-paper-plane share_btn"></i></button>
+
+            <!-- <li><h2>内容 {{ form.text }}</h2></li>
+            <li><h2>マップURL {{ form.url }}</h2></li> -->
+
+        <!-- <p>URL2:{{ form.url}}</p> -->
+        <!-- <button type="submit" class="save btn btn-default">Share</button> -->
+    </form>
+</div>
+
+    <!-- <script src="{%static 'js/main2.js' %}"></script> -->
+{% endblock %}

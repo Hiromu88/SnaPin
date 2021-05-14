@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrapの記述 -->
+    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Google Mapの記述 -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <link rel="stylesheet" href="{%static 'css/list_map.css' %}">
+    <link rel="stylesheet" href="{%static 'css/humberger.css' %}">
+    <script src="{%static 'js/main.js' %}"></script>
+    <!-- fontawesomeの設定 -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <!-- ファビコン設定 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png'%}">
+    <link rel="manifest" href="{% static 'images/site.webmanifest'%}">
+    <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.svg'%}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>SnaPin</title>
+</head>
+<body>
+
+    <!-- ハンバーガーメニューの横線 -->
+    <div class="sp_header">
+        <button type="button" class="menu-trigger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div><!-- /.sp_header -->
+
+    <!-- コンテンツ用 -->
+    <div class="wrapper">
+            <!-- スマホ用のグローバルナビ -->
+            <nav id="global-nav">
+                    <div class="page-header">
+                        <!-- <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> -->
+                        <!-- <h1><a href="{% url 'scraping_input' %}">SnaPin</a></h1> -->
+                        <h1><a href="{% url 'scraping_input' %}"><img src="{% static 'images/logo_snapin.png'%}" alt="title"></a></h1>
+                    </div>
+                    <ul>
+                        <li><a href="{% url 'scraping_input' %}" class="mapping_logo">Mapping</a></li>
+                        <li><a href="{% url 'post_list' %}" class="findpins_logo"> Find Pins</a></li>
+                        <li><a href="{% url 'post_new' %}" class="sharepins_logo">Share Pin</a></li>
+                        <!-- <li><a href="#"><i class="fas fa-user"> My Page</i></a></li>
+                        <li><a href="#"><i class="fas fa-cog"> Settings</i></a></li> -->
+                    </ul>
+            </nav>
+
+            <!-- ローディング画面 -->
+            <div id="loading">
+                <div class="spinner">
+                    <div class="double-bounce1"></div>
+                    <div class="double-bounce2"></div>
+                </div>
+            </div>
+
+            <main>
+                <div class="contents">
+                <!-- ヘッダーとアイコン用 -->
+                    <div class="icon_bar">
+                        <!-- <div class="notion"><i class="far fa-bell"></i></div> -->
+                        <div class="icon_own"></div>
+                    </div>
+                    {% block content %}
+                    {% endblock %}
+                </div>
+
+
+            <footer>
+                <small>&copy; 2021 SnaPin All Rights Reserved.</small>
+            </footer>
+
+
+            </main>
+
+    </div>
+
+    <script src="{%static 'js/main2.js' %}"></script>
+
+</body>
+</html>

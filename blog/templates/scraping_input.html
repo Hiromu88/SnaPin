@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="container">
+        <form action='' method='POST'>{% csrf_token %}
+            <div class="button_yoko">
+                <input type="text" name='url' placeholder="https://" class="url_input">
+                <input type="submit" value="Search" class="submit_btn"></i>
+            </div>
+        </form>
+</div>
+
+{% endblock %}

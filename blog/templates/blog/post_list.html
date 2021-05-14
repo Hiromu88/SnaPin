@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- <ul class="list_group_share"> -->
+        <div id="card_list">
+            {% for post in posts %}
+                <!-- <li class="share_list"> -->
+
+                <div class="card card--big">
+                    {% if post.image %}
+                    <div><img class="card__image" src="{{ post.image.url }}"></div>
+                    {% endif %}
+                    <h2 class="card__title">{{ post.title }}</h2>
+                    <p class="card__text">{{ post.summary|linebreaksbr }}</p>
+                    <div class="card__action-bar">
+                        <div class="card_full">
+                        <!-- <button class="card__button"> -->
+                            <a href="{% url 'post_detail' pk=post.pk %}">View More<i class="fas fa-angle-double-right findpins_more_btn"></i></a>
+                        </div>
+                        <!-- </button> -->
+                    </div>
+                    <!-- <div class="post_list_title"><h1 class="post_list_h1">{{ post.title }}</h1></div> -->
+                    <!-- <div class="date">
+                        {{ post.published_date }}
+                    </div> -->
+                    <!-- <p>{{ post.text|linebreaksbr }}</p> -->
+                    <!-- <p class="list_sum">{{ post.summary|linebreaksbr }}</p> -->
+                    <!-- <p>{{ post.tag }}</p> -->
+                    </div>
+            <!-- </li> -->
+            {% endfor %}
+        </div>
+    <!-- </ul> -->
+{% endblock %}
